@@ -37,7 +37,7 @@ router.post("/user/signup", async (req, res) => {
         token: newUser.token,
       });
     } else {
-      res.status(409).json({ message: "This email already has an account." });
+      res.status(409).json({ message: "This email already has an account" });
     }
   } catch (error) {
     res.status(400).json({ message: error.message });
