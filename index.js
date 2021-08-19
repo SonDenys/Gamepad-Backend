@@ -29,6 +29,10 @@ cloudinary.config({
 const userRoutes = require("./routes/user");
 app.use(userRoutes);
 
+app.get("/", async (req, res) => {
+  res.json("Welcome to the API of GamePad");
+});
+
 app.all("*", (req, res) => {
   res.status(404).json({ message: "Page not found !" });
 });
