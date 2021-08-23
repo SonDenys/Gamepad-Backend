@@ -29,6 +29,9 @@ cloudinary.config({
 const userRoutes = require("./routes/user");
 app.use(userRoutes);
 
+const favoritesRoutes = require("./routes/favorites");
+app.use(favoritesRoutes);
+
 app.get("/", async (req, res) => {
   res.json("Welcome to the API of GamePad");
 });

@@ -1,5 +1,7 @@
+//Import package
 const mongoose = require("mongoose");
 
+// Creation model
 const User = mongoose.model("User", {
   email: {
     unique: true,

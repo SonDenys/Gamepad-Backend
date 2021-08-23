@@ -2,6 +2,7 @@
 const User = require("../models/User");
 
 const isAuthenticated = async (req, res, next) => {
+  console.log("authen");
   try {
     // Get back the token sent from the customer
     const token = req.headers.authorization.replace("Bearer ", "");
