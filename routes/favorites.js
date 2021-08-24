@@ -56,4 +56,19 @@ router.delete(
   }
 );
 
+router.get("/user/favorites", isAuthenticated, async (req, res) => {
+  try {
+    const favorites = await Favorites.find()
+      .populate({
+        path: "owner",
+        select: "account",
+      })
+      .select("name image");
+
+    res.status(200).json({ favorites: favorites });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
 module.exports = router;
