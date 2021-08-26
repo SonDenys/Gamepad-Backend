@@ -30,8 +30,10 @@ router.post("/user/signup", async (req, res) => {
       });
 
       await newUser.save();
+
       // Answer to the client
       res.status(200).json({
+        id: newUser._id,
         email: newUser.email,
         account: newUser.account,
         token: newUser.token,
@@ -60,6 +62,7 @@ router.post("/user/login", async (req, res) => {
           email: user.email,
           account: user.account,
           token: user.token,
+          id: user._id,
         });
       } else {
         res.status(401).json({ message: "Unauthorized" });
