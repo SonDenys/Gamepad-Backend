@@ -20,6 +20,7 @@ router.post("/user/favorites/add", isAuthenticated, async (req, res) => {
         owner: req.fields.userId,
         name: req.fields.name,
         image: req.fields.image,
+        gameId: req.fields.gameId,
       });
 
       await newFavorites.save();
@@ -29,6 +30,7 @@ router.post("/user/favorites/add", isAuthenticated, async (req, res) => {
         owner: newFavorites.owner,
         name: newFavorites.name,
         image: newFavorites.image,
+        gameId: newFavorites.gameId,
       });
     } else {
       res

@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const Favorites = mongoose.model("Favorites", {
   name: String,
   image: String,
+  gameId: Number,
   // Link the type and the Favorites
   owner: {
     type: mongoose.Schema.Types.ObjectId,
