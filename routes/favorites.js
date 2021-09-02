@@ -10,7 +10,9 @@ router.post("/user/favorites/add", isAuthenticated, async (req, res) => {
   try {
     // Check if the game doesn't already exist in the database
     const favorites = await Favorites.findOne({
+      owner: req.fields.userId,
       name: req.fields.name,
+      gameId: req.fields.gameId,
     });
 
     // If the favorite game doesn't exist in database
@@ -46,13 +48,17 @@ router.post("/user/favorites/delete", isAuthenticated, async (req, res) => {
   try {
     // Check if the game doesn't already exist in the database
     const favorites = await Favorites.findOne({
+      owner: req.fields.userId,
       name: req.fields.name,
+      image: req.fields.image,
+      gameId: req.fields.gameId,
     });
-    // If the favorite game doesn't exist in database
-    if (!favorites) {
-      await resultToDelete.delete();
+    // If the favorite game exist in database
+    if (favorites) {
+      await favorites.delete();
+    } else {
+      res.status(409).json("This game doesn't exist in your favorites");
     }
-    res.status(200).json("Favorite deleted succesfully");
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
